@@ -1,28 +1,32 @@
-{ pkgs, customRC ? "" , plugins ? [], ... }:
+# { pkgs, config, customRC ? "" , plugins ? [], ... }:
+{ pkgs, config, ... }:
 let
-  # myNeovimUnwrapped = pkgs.neovim-unwrapped.overrideAttrs (prev: {
-  #   propagatedBuildInputs = with pkgs; [ pkgs.stdenv.cc.cc.lib ];
-  # });
+  lib = pkgs.lib;
 
-  # vimOptions = lib.evalModules {
-  #   modules = [
-  #     { imports = [../modules]; }
-  #     config 
-  #   ];
-  #
-  #   specialArgs = {
-  #     inherit pkgs; 
-  #   };
-  # };
+  vimOptions = lib.evalModules {
+    modules = [
+      { imports = [./modules]; }
+      config 
+    ];
+
+    specialArgs = {
+      inherit pkgs; 
+    };
+    
+  };
+
+  vim = vimOptions.config.vim;
 in
 pkgs.wrapNeovim pkgs.neovim-unwrapped {
   viAlias = true;
   vimAlias = true;
   configure = {
-    customRC = customRC;
-    # This is base neovim configuration
+
+    customRC = vim.configRC;
+
     packages.myVimPackage = with pkgs.neovimPlugins; {
-      start = plugins;
+      # start = plugins;
+      start = [];
       opt = [];
     };
   };

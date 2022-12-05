@@ -51,10 +51,10 @@
     in rec {
       packages.${system}.default = neovimBuilder {
         inherit pkgs;
-        customRC = ''
-          set number
-        '';
-        plugins = builtins.attrValues pkgs.neovimPlugins;
+        config = {
+          vim.colorscheme = "blue";
+        };
+        # plugins = builtins.attrValues pkgs.neovimPlugins;
       };
 
       apps.${system}.default = {
