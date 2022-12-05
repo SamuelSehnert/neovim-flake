@@ -8,8 +8,8 @@
             url = "github:neovim/neovim?dir=contrib";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        gruvbox = { url = "github:morhetz/gruvbox"; flake = false; };
-        nord-vim = { url = "github:arcticicestudio/nord-vim"; flake = false; };
+        # gruvbox = { url = "github:morhetz/gruvbox"; flake = false; };
+        # nord-vim = { url = "github:arcticicestudio/nord-vim"; flake = false; };
     };
 
     outputs = inputs:
