@@ -4,9 +4,9 @@ with lib;
 with builtins;
 
 let
-  cfg = config.vim;
+  cfg = config.customNeovim;
 in {
-  options.vim = {
+  options.customNeovim = {
     # viAlias = mkOption {
     #   description = "Enable vi alias";
     #   type = types.bool;

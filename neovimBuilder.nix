@@ -15,14 +15,14 @@ let
     
   };
 
-  vim = vimOptions.config.vim;
+  customNeovim = vimOptions.config.customNeovim;
 in
 pkgs.wrapNeovim pkgs.neovim-unwrapped {
   viAlias = true;
   vimAlias = true;
   configure = {
 
-    customRC = vim.configRC;
+    customRC = customNeovim.configRC;
 
     packages.myVimPackage = with pkgs.neovimPlugins; {
       # start = plugins;

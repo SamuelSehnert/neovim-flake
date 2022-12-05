@@ -52,7 +52,7 @@
       packages.${system}.default = neovimBuilder {
         inherit pkgs;
         config = {
-          vim.colorscheme = "blue";
+          customNeovim.colorscheme = "blue";
         };
         # plugins = builtins.attrValues pkgs.neovimPlugins;
       };

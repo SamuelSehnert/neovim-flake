@@ -3,11 +3,11 @@ with lib;
 with builtins;
 
 let
-  cfg = config.vim;
+  cfg = config.customNeovim;
 in
 {
   # Needs to be the same as cfg
-  options.vim = {
+  options.customNeovim = {
       colorscheme = mkOption {
         description = "colorscheme";
         type = types.str;
@@ -16,7 +16,7 @@ in
   };
 
   config = ({
-    vim.configRC = ''
+    customNeovim.configRC = ''
       colorscheme ${cfg.colorscheme}
     '';
   });
