@@ -49,15 +49,6 @@
           ];
         };
     in rec {
-
-      # Testing something
-      nixosModules.default = neovimBuilder {
-        inherit pkgs;
-        config = {
-          customNeovim.colorscheme = "blue";
-        };
-      };
-
       packages.${system}.default = neovimBuilder {
         inherit pkgs;
         config = {
