@@ -51,12 +51,11 @@
 
         basicConfig = {
           customNeovim = {
-            colorscheme = "blue";
+            colorscheme = "desert";
           };
         };
     in rec {
       packages.${system} = {
-        # default = neovimBuilder {
         preconfigured = neovimBuilder {
           inherit pkgs;
           config = basicConfig;
@@ -70,11 +69,11 @@
         preconfigured = packages.${system}.preconfigured;
       };
 
-      # This is for $flake run
-      apps.${system}.default = {
-          nvim = {
+      # This is for $flake run. Mostly for testing
+      apps.${system} = {
+          default = {
               type = "app";
-              program = "${packages.${system}.default}/bin/nvim";
+              program = "${packages.${system}.preconfigured}/bin/nvim";
           };
       };
     };
