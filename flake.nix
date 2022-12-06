@@ -56,7 +56,8 @@
         };
     in rec {
       packages.${system} = {
-        default = neovimBuilder {
+        # default = neovimBuilder {
+        preconfigured = neovimBuilder {
           inherit pkgs;
           config = basicConfig;
           # plugins = builtins.attrValues pkgs.neovimPlugins;
@@ -66,7 +67,7 @@
       # This is how the flake can get added to another system;
       overlays.default = final: prev: {
         inherit neovimBuilder;
-        #default = packages.${system}.default;
+        preconfigured = packages.${system}.preconfigured;
       };
 
       # This is for $flake run
