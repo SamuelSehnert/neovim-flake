@@ -66,7 +66,7 @@
       # This is how the flake can get added to another system;
       overlays.default = final: prev: {
         inherit neovimBuilder;
-        default = packages.${system}.default;
+        #default = packages.${system}.default;
       };
 
       # This is for $flake run
