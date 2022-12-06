@@ -48,15 +48,28 @@
             })
           ];
         };
-    in rec {
-      packages.${system}.default = neovimBuilder {
-        inherit pkgs;
-        config = {
-          customNeovim.colorscheme = "blue";
+
+        basicConfig = {
+          customNeovim = {
+            colorscheme = "blue";
+          };
         };
-        # plugins = builtins.attrValues pkgs.neovimPlugins;
+    in rec {
+      packages.${system} = {
+        default = neovimBuilder {
+          inherit pkgs;
+          config = basicConfig;
+          # plugins = builtins.attrValues pkgs.neovimPlugins;
+        };
       };
 
+      # This is how the flake can get added to another system;
+      overlays.default = final: prev: {
+        inherit neovimBuilder;
+        default = packages.${system}.default;
+      };
+
+      # This is for $flake run
       apps.${system}.default = {
           nvim = {
               type = "app";
