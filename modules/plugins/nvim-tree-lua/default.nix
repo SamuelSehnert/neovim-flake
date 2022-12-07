@@ -8,6 +8,13 @@ in
 {
   options.customNeovim.plugins.nvim-tree-lua = {
     enable = mkEnableOption "Enable Nvim-Tree-Lua";
+    
+    openOnStart = mkOption {
+      default = true;
+      type = types.bool;
+      description = "Open when vim is started on a directory";
+    };
+
   };
 
   config = mkIf cfg.enable {
@@ -24,7 +31,10 @@ in
     '';
 
     customNeovim.luaConfigRC = ''
-      require("nvim-tree").setup()
+      require("nvim-tree").setup({
+        open_on_setup = ${boolToString cfg.openOnStart},
+        open_on_setup_file = ${boolToString cfg.openOnStart},
+      })
     '';
   };
 }
