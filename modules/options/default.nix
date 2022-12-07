@@ -3,7 +3,6 @@ with lib;
 with builtins;
 
 let
-  #cfg = config.customNeovim.options;
   cfg = config.customNeovim.options;
 in
 {

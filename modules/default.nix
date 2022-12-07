@@ -3,6 +3,7 @@
   imports = [
     ./core
     ./options
+    ./keymap
     ./plugins
   ];
 }

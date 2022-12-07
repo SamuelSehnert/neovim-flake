@@ -9,6 +9,7 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        # File Tree
         nvim-tree-lua = { url = "github:nvim-tree/nvim-tree.lua"; flake = false; };
     };
 
@@ -28,8 +29,8 @@
             version = "master";
             src = builtins.getAttr name inputs;
           }; in {
-           neovimPlugins = builtins.listToAttrs (map (name: { inherit name; value = buildPlug name; }) plugins);
-         };
+          neovimPlugins = builtins.listToAttrs (map (name: { inherit name; value = buildPlug name; }) plugins);
+        };
 
         customPkgs = import inputs.nixpkgs {
           inherit system;
@@ -41,14 +42,20 @@
 
         basicConfig = {
           customNeovim = {
+
             options = {
-              colorscheme = "blue";
+              colorscheme = "desert";
             };
+
+            keymaps.leader = ",";
+            keymaps.silent = false;
+
             plugins = {
               nvim-tree-lua = {
                 enable = true;
               };
             };
+
           };
         };
 

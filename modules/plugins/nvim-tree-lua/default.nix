@@ -11,9 +11,18 @@ in
   };
 
   config = mkIf cfg.enable {
+
     customNeovim.startupPlugins = with pkgs.neovimPlugins; [
       nvim-tree-lua
     ];
+
+    customNeovim.extraKeymaps =
+      let keymapOptions = "{ noremap = true; silent = true; }";
+    in
+    ''
+      vim.api.nvim_set_keymap("n", "<leader>e", ":NvimTreeToggle<cr>", ${keymapOptions})
+    '';
+
     customNeovim.luaConfigRC = ''
       require("nvim-tree").setup()
     '';
