@@ -54,10 +54,27 @@
         "type": "github"
       }
     },
+    "nvim-tree-lua": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1670039798,
+        "narHash": "sha256-mQfo9KlNHbZtDIO3U8BZ7PGVBP5EtLUDpETq+bfqpVU=",
+        "owner": "nvim-tree",
+        "repo": "nvim-tree.lua",
+        "rev": "f8489c992998e1e1b45aec65bdb9615e5cd59a61",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-tree",
+        "repo": "nvim-tree.lua",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "neovim": "neovim",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "nvim-tree-lua": "nvim-tree-lua"
       }
     }
   },

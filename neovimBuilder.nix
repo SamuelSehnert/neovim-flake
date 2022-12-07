@@ -1,7 +1,8 @@
-# { pkgs, config, customRC ? "" , plugins ? [], ... }:
 { pkgs, config, ... }:
 let
   lib = pkgs.lib;
+
+  neovimPlugins = pkgs.neovimPlugins;
 
   vimOptions = lib.evalModules {
     modules = [
@@ -18,16 +19,15 @@ let
   customNeovim = vimOptions.config.customNeovim;
 in
 pkgs.wrapNeovim pkgs.neovim-unwrapped {
-  viAlias = true;
-  vimAlias = true;
+  viAlias = customNeovim.viAlias;
+  vimAlias = customNeovim.vimAlias;
   configure = {
 
     customRC = customNeovim.configRC;
 
     packages.myVimPackage = with pkgs.neovimPlugins; {
-      # start = plugins;
-      start = [];
-      opt = [];
+      start = customNeovim.startupPlugins;
+      opt = customNeovim.optionalPlugins;
     };
   };
 }

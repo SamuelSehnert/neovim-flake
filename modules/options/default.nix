@@ -3,11 +3,12 @@ with lib;
 with builtins;
 
 let
-  cfg = config.customNeovim;
+  #cfg = config.customNeovim.options;
+  cfg = config.customNeovim.options;
 in
 {
   # Needs to be the same as cfg
-  options.customNeovim = {
+  options.customNeovim.options = {
       colorscheme = mkOption {
         description = "Set the colorscheme. If left default or blank, default vim colorscheme will be uesd";
         type = types.str;

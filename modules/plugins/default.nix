@@ -1,8 +1,7 @@
 { pkgs, lib, config, ... }:
 {
   imports = [
-    ./core
-    ./options
-    ./plugins
+    ./nvim-tree-lua
+    # ./gruvbox
   ];
 }

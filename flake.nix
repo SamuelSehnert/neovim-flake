@@ -8,8 +8,8 @@
             url = "github:neovim/neovim?dir=contrib";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        # gruvbox = { url = "github:morhetz/gruvbox"; flake = false; };
-        # nord-vim = { url = "github:arcticicestudio/nord-vim"; flake = false; };
+
+        nvim-tree-lua = { url = "github:nvim-tree/nvim-tree.lua"; flake = false; };
     };
 
     outputs = inputs:
@@ -18,48 +18,49 @@
 
         neovimBuilder = import ./neovimBuilder.nix;
 
-        pluginOverlay = final: prev:
-            let
-              inherit (prev.vimUtils) buildVimPluginFrom2Nix;
+        pluginOverlay = final: prev: let
 
-              plugins = builtins.attrNames (builtins.removeAttrs inputs [ "nixpkgs" "neovim" ] );
+          # I find this slightly better than listing out the plugins in an array, but it's still pretty busted...
+          plugins = builtins.attrNames ( builtins.removeAttrs inputs [ "nixpkgs" "neovim" "self" ] );
 
-              buildPlug = name: buildVimPluginFrom2Nix {
-                pname = name;
-                version = "master";
-                src = builtins.getAttr name inputs;
-              };
-            in
-            {
-              neovimPlugins = builtins.listToAttrs (map
-                (pluginName: {
-                  name = pluginName;
-                  value = buildPlug pluginName;
-                })
-                plugins);
-            };
+          buildPlug = name: final.vimUtils.buildVimPluginFrom2Nix {
+            pname = name;
+            version = "master";
+            src = builtins.getAttr name inputs;
+          }; in {
+           neovimPlugins = builtins.listToAttrs (map (name: { inherit name; value = buildPlug name; }) plugins);
+         };
 
-        pkgs = import inputs.nixpkgs {
+        customPkgs = import inputs.nixpkgs {
           inherit system;
           overlays = [
             pluginOverlay
-            (final: prev: {
-              neovim-unwrapped = inputs.neovim.packages.${prev.system}.neovim;
-            })
+            (final: prev: { neovim-unwrapped = inputs.neovim.packages.${prev.system}.neovim; })
           ];
         };
 
         basicConfig = {
           customNeovim = {
-            colorscheme = "desert";
+            options = {
+              colorscheme = "blue";
+            };
+            plugins = {
+              nvim-tree-lua = {
+                enable = true;
+              };
+            };
           };
         };
+
     in rec {
+
+      # For debugging
+      # inherit plugins pluginOverlay customPkgs;
+
       packages.${system} = {
         preconfigured = neovimBuilder {
-          inherit pkgs;
+          pkgs = customPkgs;
           config = basicConfig;
-          # plugins = builtins.attrValues pkgs.neovimPlugins;
         };
       };
 
