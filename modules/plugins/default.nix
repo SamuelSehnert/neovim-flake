@@ -2,6 +2,6 @@
 {
   imports = [
     ./nvim-tree-lua
-    # ./gruvbox
+    ./lsp
   ];
 }

@@ -14,7 +14,7 @@
 
         # LSP
         nvim-lspconfig = { url = "github:neovim/nvim-lspconfig"; flake = false; };
-        nil = { url = "github:oxalica/nil"; flake = true; }; #nix lsp
+        rnix-lsp = { url = "github:nix-community/rnix-lsp"; flake = true; };
     };
 
     outputs = inputs:
