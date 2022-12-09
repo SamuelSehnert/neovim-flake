@@ -137,13 +137,30 @@
         "type": "github"
       }
     },
+    "nvim-treesitter": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1670433357,
+        "narHash": "sha256-lRZa4e9RczhPKaHg0WxCU+vlZM8H6/YYXaSm3nMNNac=",
+        "owner": "nvim-treesitter",
+        "repo": "nvim-treesitter",
+        "rev": "582e5683fbe88ecbc73396a7bc1431d84ca693e8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-treesitter",
+        "repo": "nvim-treesitter",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "neovim": "neovim",
         "nil": "nil",
         "nixpkgs": "nixpkgs_2",
         "nvim-lspconfig": "nvim-lspconfig",
-        "nvim-tree-lua": "nvim-tree-lua"
+        "nvim-tree-lua": "nvim-tree-lua",
+        "nvim-treesitter": "nvim-treesitter"
       }
     },
     "rust-overlay": {

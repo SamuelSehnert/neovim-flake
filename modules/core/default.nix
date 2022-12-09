@@ -10,13 +10,13 @@ in {
     viAlias = mkOption {
       description = "Enable vi alias";
       type = types.bool;
-      default = true;
+      default = false;
     };
 
     vimAlias = mkOption {
       description = "Enable vim alias";
       type = types.bool;
-      default = true; 
+      default = false; 
     };
 
     luaConfigRC = mkOption {

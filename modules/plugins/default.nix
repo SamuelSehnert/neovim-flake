@@ -3,5 +3,6 @@
   imports = [
     ./nvim-tree-lua
     ./lsp
+    ./treesitter
   ];
 }

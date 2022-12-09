@@ -12,6 +12,10 @@
         # File Tree
         nvim-tree-lua = { url = "github:nvim-tree/nvim-tree.lua"; flake = false; };
 
+        # Something else https://github.com/nvim-treesitter/nvim-treesitter
+        nvim-treesitter = { url = "github:nvim-treesitter/nvim-treesitter"; flake = false; };
+        #tree-sitter-nix = { url = "github:cstrahan/tree-sitter-nix"; flake = false; };
+
         # LSP
         nvim-lspconfig = { url = "github:neovim/nvim-lspconfig"; flake = false; };
         nil = { url = "github:oxalica/nil"; flake = true; }; #nix lsp
@@ -58,6 +62,7 @@
               nvim-tree-lua = {
                 enable = true;
               };
+              treesitter.enable = true;
               lsp = {
                 enable = true;
                 nix.enable = true;
