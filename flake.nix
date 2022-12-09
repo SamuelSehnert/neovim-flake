@@ -51,7 +51,7 @@
           customNeovim = {
 
             options = {
-              colorscheme = "desert";
+              mouse = "a";
             };
 
             keymaps.leader = ",";

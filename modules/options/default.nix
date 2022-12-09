@@ -49,6 +49,12 @@ in
         type = types.bool;
         default = true;
       };
+
+      mouse = mkOption {
+        description = "Enable Mouse";
+        type = with types; enum ["a" "n" "v" "i" "c"];
+        default = "";
+      };
   };
 
   config = let 
@@ -56,13 +62,14 @@ in
   in {
     customNeovim.configRC = ''
       ${ writeIf { c = ( cfg.colorscheme != "" ); v1 = "colorscheme ${cfg.colorscheme}"; } }
-      ${ writeIf { c = cfg.syntax; v1 = "syntax on"; v2 = "syntax off"; } }
+      syntax ${ writeIf { c = cfg.syntax; v1 = "on"; v2 = "off"; } }
 
       set tabstop=${toString cfg.tabstop}
       set softtabstop=${toString cfg.softtabstop}
       set shiftwidth=${toString cfg.shiftwidth}
       ${ writeIf { c = cfg.expandtab; v1 = "set expandtab"; } }
       ${ writeIf { c = cfg.smarttab; v1 = "set smarttab"; } }
+      set mouse=${toString cfg.mouse}
     '';
   };
 }

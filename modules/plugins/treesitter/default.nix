@@ -6,13 +6,24 @@ let
   cfg = config.customNeovim.plugins.treesitter;
 in {
   options.customNeovim.plugins.treesitter = {
-    enable = mkEnableOption "Enable tree-sitter [nvim-treesitter]";
+    enable = mkEnableOption "Enable tree-sitter";
+
+    folding = mkEnableOption "Enable folding";
   };
 
-  config = mkIf cfg.enable {
+  config = let
+    writeIf = { c, v1, v2 ? "" }: if c then v1 else v2;
+  in mkIf cfg.enable {
       customNeovim.startupPlugins = with pkgs.neovimPlugins; [
         nvim-treesitter
       ];
+
+      customNeovim.configRC = writeIf { c = cfg.folding; v1 = ''
+        " Tree-sitter based folding
+        set foldmethod=expr
+        set foldexpr=nvim_treesitter#foldexpr()
+        set nofoldenable
+      ''; };
 
       customNeovim.luaConfigRC = ''
         -- Treesitter config

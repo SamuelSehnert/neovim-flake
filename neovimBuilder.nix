@@ -29,5 +29,6 @@ pkgs.wrapNeovim pkgs.neovim-unwrapped {
       start = customNeovim.startupPlugins;
       opt = customNeovim.optionalPlugins;
     };
+
   };
 }
