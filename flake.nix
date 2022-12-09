@@ -14,7 +14,6 @@
 
         # Something else https://github.com/nvim-treesitter/nvim-treesitter
         nvim-treesitter = { url = "github:nvim-treesitter/nvim-treesitter"; flake = false; };
-        #tree-sitter-nix = { url = "github:cstrahan/tree-sitter-nix"; flake = false; };
 
         # LSP
         nvim-lspconfig = { url = "github:neovim/nvim-lspconfig"; flake = false; };

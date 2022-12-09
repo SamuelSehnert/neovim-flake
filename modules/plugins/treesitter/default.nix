@@ -12,10 +12,6 @@ in {
   config = mkIf cfg.enable {
       customNeovim.startupPlugins = with pkgs.neovimPlugins; [
         nvim-treesitter
-        #(pkgs.vimPlugins.nvim-treesitter.withPlugins (plugin: pkgs.tree-sitter.allGrammars))
-        # (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugin: with pkgs.tree-sitter-grammars; [
-        #   #tree-sitter-nix
-        # ]))
       ];
 
       customNeovim.luaConfigRC = ''
