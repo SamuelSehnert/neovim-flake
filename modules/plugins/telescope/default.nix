@@ -22,6 +22,11 @@ in {
         ( if cfg.fuzzyFinder then pkgs.ripgrep else null )
       ];
 
+      customNeovim.extraKeymaps = ''
+        vim.api.nvim_set_keymap("n", "<leader>ff", ":Telescope find_files<cr>", options)
+        vim.api.nvim_set_keymap("n", "<leader>fg", ":Telescope live_grep<cr>", options)
+      '';
+
       customNeovim.luaConfigRC = ''
         require('telescope').setup{}
       '';
