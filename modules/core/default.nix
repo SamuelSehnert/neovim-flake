@@ -45,7 +45,8 @@ in {
 
     startupPlugins = mkOption {
       description = "Plugins to load on start";
-      type = with types; listOf package;
+      # type = with types; listOf package;
+      type = with types; listOf (nullOr package);
       default = [ ];
     };
 

@@ -26,8 +26,9 @@ pkgs.wrapNeovim pkgs.neovim-unwrapped {
     customRC = customNeovim.configRC;
 
     packages.myVimPackage = with pkgs.neovimPlugins; {
-      start = customNeovim.startupPlugins;
-      opt = customNeovim.optionalPlugins;
+      # start = customNeovim.startupPlugins;
+      start = builtins.filter (f: f != null) customNeovim.startupPlugins;
+      opt = builtins.filter (f: f != null) customNeovim.optionalPlugins;
     };
 
   };

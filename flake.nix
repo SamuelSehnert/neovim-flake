@@ -19,6 +19,12 @@
         nvim-lspconfig = { url = "github:neovim/nvim-lspconfig"; flake = false; };
         nil = { url = "github:oxalica/nil"; flake = true; }; #nix lsp
 
+        # Telescope
+        telescope-nvim = { url = "github:nvim-telescope/telescope.nvim"; flake = false; };
+        telescope-fzf-native-nvim = { url = "github:nvim-telescope/telescope-fzf-native.nvim"; flake = false; };
+        ripgrep = { url = "github:BurntSushi/ripgrep"; flake = false; };
+        plenary-nvim = { url = "github:nvim-lua/plenary.nvim"; flake = false; };
+
         # Misc
         gitsigns-nvim = { url = "github:lewis6991/gitsigns.nvim"; flake = false; };
     };
@@ -54,6 +60,7 @@
           customNeovim = {
 
             options = {
+              colorscheme = "desert";
               mouse = "a";
             };
 
@@ -65,6 +72,8 @@
               treesitter.enable = true;
               gitsigns.enable = true;
               gitsigns.blame = true;
+              telescope.enable = true;
+              telescope.fuzzyFinder = true;
               lsp = {
                 enable = true;
                 nix.enable = true;

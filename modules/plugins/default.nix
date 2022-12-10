@@ -5,5 +5,6 @@
     ./lsp
     ./treesitter
     ./gitsigns
+    ./telescope
   ];
 }
