@@ -11,6 +11,7 @@
 
         # File Tree
         nvim-tree-lua = { url = "github:nvim-tree/nvim-tree.lua"; flake = false; };
+        nvim-web-devicons = { url = "github:nvim-tree/nvim-web-devicons"; flake = false; };
 
         # Tree-sitter https://github.com/nvim-treesitter/nvim-treesitter
         nvim-treesitter = { url = "github:nvim-treesitter/nvim-treesitter"; flake = false; };
@@ -69,6 +70,7 @@
 
             plugins = {
               nvim-tree-lua.enable = true;
+              nvim-tree-lua.webDevIcons = true;
               treesitter.enable = true;
               gitsigns.enable = true;
               gitsigns.blame = true;

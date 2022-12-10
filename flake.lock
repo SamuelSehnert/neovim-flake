@@ -169,6 +169,22 @@
         "type": "github"
       }
     },
+    "nvim-web-devicons": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1670623994,
+        "narHash": "sha256-X2CM/CjBS5RCKVsepbOnmmYveYNjssaMm8uo92u2o6w=",
+        "owner": "nvim-tree",
+        "repo": "nvim-web-devicons",
+        "rev": "05e1072f63f6c194ac6e867b567e6b437d3d4622",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-tree",
+        "repo": "nvim-web-devicons",
+        "type": "github"
+      }
+    },
     "plenary-nvim": {
       "flake": false,
       "locked": {
@@ -210,6 +226,7 @@
         "nvim-lspconfig": "nvim-lspconfig",
         "nvim-tree-lua": "nvim-tree-lua",
         "nvim-treesitter": "nvim-treesitter",
+        "nvim-web-devicons": "nvim-web-devicons",
         "plenary-nvim": "plenary-nvim",
         "ripgrep": "ripgrep",
         "telescope-fzf-native-nvim": "telescope-fzf-native-nvim",

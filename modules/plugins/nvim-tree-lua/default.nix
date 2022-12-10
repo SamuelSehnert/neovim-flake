@@ -8,6 +8,8 @@ in
 {
   options.customNeovim.plugins.nvim-tree-lua = {
     enable = mkEnableOption "Enable Nvim-Tree-Lua";
+
+    webDevIcons = mkEnableOption "Enable WebDevIcons";
     
     openOnStart = mkOption {
       default = true;
@@ -21,6 +23,7 @@ in
 
     customNeovim.startupPlugins = with pkgs.neovimPlugins; [
       nvim-tree-lua
+      ( if cfg.webDevIcons then nvim-web-devicons else null )
     ];
 
     customNeovim.extraKeymaps =
