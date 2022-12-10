@@ -7,6 +7,8 @@ let
 in {
   options.customNeovim.plugins.gitsigns = {
     enable = mkEnableOption "Enable gitsigns";
+
+    blame = mkEnableOption "Enable git blame";
   };
 
   config = let
@@ -17,7 +19,9 @@ in {
       ];
 
       customNeovim.luaConfigRC = ''
-        require('gitsigns').setup()
+      require('gitsigns').setup{
+        ${writeIf { c = cfg.blame; v1 = "current_line_blame = true"; }},
+      }
       '';
   };
 }

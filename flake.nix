@@ -64,6 +64,7 @@
               nvim-tree-lua.enable = true;
               treesitter.enable = true;
               gitsigns.enable = true;
+              gitsigns.blame = true;
               lsp = {
                 enable = true;
                 nix.enable = true;
