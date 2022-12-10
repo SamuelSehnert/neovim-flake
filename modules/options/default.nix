@@ -52,7 +52,7 @@ in
 
       mouse = mkOption {
         description = "Enable Mouse";
-        type = with types; enum ["a" "n" "v" "i" "c"];
+        type = with types; enum ["a" "n" "v" "i" "c" ""];
         default = "";
       };
   };
