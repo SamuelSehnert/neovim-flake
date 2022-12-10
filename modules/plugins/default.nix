@@ -4,5 +4,6 @@
     ./nvim-tree-lua
     ./lsp
     ./treesitter
+    ./gitsigns
   ];
 }

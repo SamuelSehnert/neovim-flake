@@ -30,6 +30,22 @@
         "type": "github"
       }
     },
+    "gitsigns-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1669826718,
+        "narHash": "sha256-2S25m5sx7fHI/PHKosch7w/uV7DUOFtOQVpp9sUGKYk=",
+        "owner": "lewis6991",
+        "repo": "gitsigns.nvim",
+        "rev": "d076301a634198e0ae3efee3b298fc63c055a871",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lewis6991",
+        "repo": "gitsigns.nvim",
+        "type": "github"
+      }
+    },
     "neovim": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -39,11 +55,11 @@
       },
       "locked": {
         "dir": "contrib",
-        "lastModified": 1670626203,
+        "lastModified": 1670633376,
         "narHash": "sha256-COqObflZvvFuY+G2UMrkDuRigXDbUjCpxf/zNKNrovw=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "7faf8a45e8c48d5ab1b6096d6b3e23c84bb3d7c6",
+        "rev": "f96fb23de62f9539bf254cc1a4e99d1da8b71994",
         "type": "github"
       },
       "original": {
@@ -91,11 +107,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1670559856,
-        "narHash": "sha256-xUkgQRFqE6HIFQXs9SIXMZiXcLaH2415UR6w/FnsgcY=",
+        "lastModified": 1670587192,
+        "narHash": "sha256-h3DHD2WBddfZxRuceYBa54JZKF1z8O8dtYNZK5UvP/4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "6bc6f77cb171a74001033d94f17f49043a9f1804",
+        "rev": "aaac4123e3e33e779af54361a244857d029a64dd",
         "type": "github"
       },
       "original": {
@@ -124,11 +140,11 @@
     "nvim-tree-lua": {
       "flake": false,
       "locked": {
-        "lastModified": 1670039798,
-        "narHash": "sha256-mQfo9KlNHbZtDIO3U8BZ7PGVBP5EtLUDpETq+bfqpVU=",
+        "lastModified": 1670632145,
+        "narHash": "sha256-hNQ5E+AQ4+W8NVrhkq2E9R75fW/MP7y/eQe6vq0XMqo=",
         "owner": "nvim-tree",
         "repo": "nvim-tree.lua",
-        "rev": "f8489c992998e1e1b45aec65bdb9615e5cd59a61",
+        "rev": "e49fa4e52900ddc218cfaa6d7e3345c97a086d40",
         "type": "github"
       },
       "original": {
@@ -155,6 +171,7 @@
     },
     "root": {
       "inputs": {
+        "gitsigns-nvim": "gitsigns-nvim",
         "neovim": "neovim",
         "nil": "nil",
         "nixpkgs": "nixpkgs_2",
