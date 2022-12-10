@@ -18,7 +18,6 @@
 
         # LSP
         nvim-lspconfig = { url = "github:neovim/nvim-lspconfig"; flake = false; };
-        nil = { url = "github:oxalica/nil"; flake = true; }; #nix lsp
 
         # Telescope
         telescope-nvim = { url = "github:nvim-telescope/telescope.nvim"; flake = false; };
@@ -78,7 +77,9 @@
               telescope.fuzzyFinder = true;
               lsp = {
                 enable = true;
-                nix.enable = true;
+                nix = true;
+                python = true;
+                c = true;
               };
             };
 
