@@ -15,6 +15,7 @@ in {
     writeIf = { c, v1, v2 ? "" }: if c then v1 else v2;
   in mkIf cfg.enable {
       customNeovim.startupPlugins = with pkgs.neovimPlugins; [
+        vim-nix
         nvim-treesitter
       ];
 
