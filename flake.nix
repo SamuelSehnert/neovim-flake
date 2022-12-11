@@ -61,25 +61,25 @@
 
             options = {
               colorscheme = "desert";
-              mouse = "a";
+              # mouse = "a";
             };
 
-            keymaps.leader = ",";
-            keymaps.silent = false;
+            # keymaps.leader = ",";
+            # keymaps.silent = false;
 
             plugins = {
-              nvim-tree-lua.enable = true;
-              nvim-tree-lua.webDevIcons = true;
-              treesitter.enable = true;
-              gitsigns.enable = true;
-              gitsigns.blame = true;
-              telescope.enable = true;
-              telescope.fuzzyFinder = true;
+              # nvim-tree-lua.enable = true;
+              # nvim-tree-lua.webDevIcons = true;
+              # treesitter.enable = true;
+              # gitsigns.enable = true;
+              # gitsigns.blame = true;
+              # telescope.enable = true;
+              # telescope.fuzzyFinder = true;
               lsp = {
                 enable = true;
                 nix = true;
-                python = true;
-                c = true;
+                # python = true;
+                # c = true;
               };
             };
 
@@ -102,6 +102,7 @@
       overlays.default = final: prev: {
         inherit neovimBuilder;
         preconfigured = packages.${system}.preconfigured;
+        neovimPlugins = customPkgs.neovimPlugins;
       };
 
       # This is for $flake run. Mostly for testing

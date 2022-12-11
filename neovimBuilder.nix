@@ -1,3 +1,4 @@
+# { pkgs, lib ? pkgs.lib, ... }: {config}: let
 { pkgs, config, ... }:
 let
   lib = pkgs.lib;
