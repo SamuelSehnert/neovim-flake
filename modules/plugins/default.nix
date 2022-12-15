@@ -1,10 +1,11 @@
 { pkgs, lib, config, ... }:
 {
   imports = [
-    ./nvim-tree-lua
-    ./lsp
-    ./treesitter
     ./gitsigns
+    ./lsp
+    ./misc
+    ./nvim-tree-lua
     ./telescope
+    ./treesitter
   ];
 }

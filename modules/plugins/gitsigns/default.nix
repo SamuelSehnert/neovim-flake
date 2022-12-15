@@ -19,9 +19,9 @@ in {
       ];
 
       customNeovim.luaConfigRC = ''
-      require('gitsigns').setup{
-        ${writeIf { c = cfg.blame; v1 = "current_line_blame = true"; }},
-      }
+        require('gitsigns').setup{
+          ${writeIf { c = cfg.blame; v1 = "current_line_blame = true"; }},
+        }
       '';
   };
 }

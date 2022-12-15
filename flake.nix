@@ -20,6 +20,38 @@
         # LSP
         nvim-lspconfig = { url = "github:neovim/nvim-lspconfig"; flake = false; };
 
+        # Autocomplete
+        nvim-compe = {
+          url = "github:hrsh7th/nvim-compe";
+          flake = false;
+        };
+        nvim-cmp = {
+          url = "github:hrsh7th/nvim-cmp";
+          flake = false;
+        };
+        cmp-nvim-lsp = {
+          url = "github:hrsh7th/cmp-nvim-lsp";
+          flake = false;
+        };
+        cmp-vsnip = {
+          url = "github:hrsh7th/cmp-vsnip";
+          flake = false;
+        };
+        cmp-path = {
+          url = "github:hrsh7th/cmp-path";
+          flake = false;
+        };
+        cmp-treesitter = {
+          url = "github:ray-x/cmp-treesitter";
+          flake = false;
+        };
+
+        # snippets
+        luasnip = {
+          url = "github:L3MON4D3/LuaSnip";
+          flake = false;
+        };
+
         # Telescope
         telescope-nvim = { url = "github:nvim-telescope/telescope.nvim"; flake = false; };
         telescope-fzf-native-nvim = { url = "github:nvim-telescope/telescope-fzf-native.nvim"; flake = false; };
@@ -28,6 +60,7 @@
 
         # Misc
         gitsigns-nvim = { url = "github:lewis6991/gitsigns.nvim"; flake = false; };
+        indent-blankline-nvim = { url = "github:lukas-reineke/indent-blankline.nvim"; flake = false; };
     };
 
     outputs = inputs:
@@ -62,25 +95,27 @@
 
             options = {
               colorscheme = "desert";
-              # mouse = "a";
+              mouse = "a";
             };
 
-            # keymaps.leader = ",";
-            # keymaps.silent = false;
+            keymaps.leader = ",";
 
             plugins = {
-              # nvim-tree-lua.enable = true;
-              # nvim-tree-lua.webDevIcons = true;
+              nvim-tree-lua.enable = true;
+              nvim-tree-lua.webDevIcons = true;
               treesitter.enable = true;
-              # gitsigns.enable = true;
-              # gitsigns.blame = true;
-              # telescope.enable = true;
-              # telescope.fuzzyFinder = true;
+              gitsigns.enable = true;
+              gitsigns.blame = true;
+              telescope.enable = true;
+              telescope.fuzzyFinder = true;
               lsp = {
                 enable = true;
                 nix = true;
-                # python = true;
-                # c = true;
+                python = true;
+                c = true;
+              };
+              misc = {
+                enableIndentBlankline = true;
               };
             };
 
