@@ -20,38 +20,6 @@
         # LSP
         nvim-lspconfig = { url = "github:neovim/nvim-lspconfig"; flake = false; };
 
-        # Autocomplete
-        nvim-compe = {
-          url = "github:hrsh7th/nvim-compe";
-          flake = false;
-        };
-        nvim-cmp = {
-          url = "github:hrsh7th/nvim-cmp";
-          flake = false;
-        };
-        cmp-nvim-lsp = {
-          url = "github:hrsh7th/cmp-nvim-lsp";
-          flake = false;
-        };
-        cmp-vsnip = {
-          url = "github:hrsh7th/cmp-vsnip";
-          flake = false;
-        };
-        cmp-path = {
-          url = "github:hrsh7th/cmp-path";
-          flake = false;
-        };
-        cmp-treesitter = {
-          url = "github:ray-x/cmp-treesitter";
-          flake = false;
-        };
-
-        # snippets
-        luasnip = {
-          url = "github:L3MON4D3/LuaSnip";
-          flake = false;
-        };
-
         # Telescope
         telescope-nvim = { url = "github:nvim-telescope/telescope.nvim"; flake = false; };
         telescope-fzf-native-nvim = { url = "github:nvim-telescope/telescope-fzf-native.nvim"; flake = false; };
