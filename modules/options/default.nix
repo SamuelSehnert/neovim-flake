@@ -20,6 +20,12 @@ in
         default = true;
       };
 
+      lineNumber = mkOption {
+        description = "Set line number";
+        type = with types; enum [ "relative" "relativenumber" "number" ];
+        default = "number";
+      };
+
       tabstop = mkOption {
         description = "How many columns of whitespace is a tab worth";
         type = types.int;
@@ -69,6 +75,9 @@ in
       set shiftwidth=${toString cfg.shiftwidth}
       ${ writeIf { c = cfg.expandtab; v1 = "set expandtab"; } }
       ${ writeIf { c = cfg.smarttab; v1 = "set smarttab"; } }
+      ${ writeIf { c = (cfg.lineNumber == "number"); v1 = "set number"; } }
+      ${ writeIf { c = (cfg.lineNumber == "relative"); v1 = "set relative"; } }
+      ${ writeIf { c = (cfg.lineNumber == "relativenumber"); v1 = "set relativenumber"; } }
       set mouse=${toString cfg.mouse}
     '';
   };

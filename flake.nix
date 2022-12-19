@@ -64,6 +64,7 @@
             options = {
               colorscheme = "desert";
               mouse = "a";
+              lineNumber = "relativenumber";
             };
 
             keymaps.leader = ",";
@@ -81,6 +82,7 @@
                 nix = true;
                 python = true;
                 c = true;
+                html = true;
               };
               misc = {
                 enableIndentBlankline = true;
