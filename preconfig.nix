@@ -16,6 +16,8 @@
                 gitsigns.blame = true;
                 telescope.enable = true;
                 telescope.fuzzyFinder = true;
+                lualine.enable = true;
+                lualine.icons = true;
                 lsp = {
                     enable = true;
                     nix = true;

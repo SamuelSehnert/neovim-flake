@@ -7,5 +7,6 @@
         ./nvim-tree-lua
         ./telescope
         ./treesitter
+        ./lualine
     ];
 }

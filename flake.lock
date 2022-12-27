@@ -63,6 +63,22 @@
         "type": "github"
       }
     },
+    "lualine-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1671714909,
+        "narHash": "sha256-uyKNl6y+wI8QDpC+jM6mxhmb0NTv3dnIVOjd4s0l3yM=",
+        "owner": "nvim-lualine",
+        "repo": "lualine.nvim",
+        "rev": "fffbcb829288c3ca366f17cdb8d46aefb5c1d6f3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-lualine",
+        "repo": "lualine.nvim",
+        "type": "github"
+      }
+    },
     "neovim": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -203,6 +219,7 @@
         "comment-nvim": "comment-nvim",
         "gitsigns-nvim": "gitsigns-nvim",
         "indent-blankline-nvim": "indent-blankline-nvim",
+        "lualine-nvim": "lualine-nvim",
         "neovim": "neovim",
         "nixpkgs": "nixpkgs",
         "nvim-lspconfig": "nvim-lspconfig",

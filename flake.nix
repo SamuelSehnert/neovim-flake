@@ -26,6 +26,9 @@
         ripgrep = { url = "github:BurntSushi/ripgrep"; flake = false; };
         plenary-nvim = { url = "github:nvim-lua/plenary.nvim"; flake = false; };
 
+        # Status Line
+        lualine-nvim = { url = "github:nvim-lualine/lualine.nvim"; flake = false; };
+
         # Misc
         gitsigns-nvim = { url = "github:lewis6991/gitsigns.nvim"; flake = false; };
         indent-blankline-nvim = { url = "github:lukas-reineke/indent-blankline.nvim"; flake = false; };
