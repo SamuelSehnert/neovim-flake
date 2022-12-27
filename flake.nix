@@ -82,7 +82,6 @@
                 nix = true;
                 python = true;
                 c = true;
-                html = true;
               };
               misc = {
                 enableIndentBlankline = true;
