@@ -1,9 +1,9 @@
 { pkgs, lib, config, ... }:
 {
-  imports = [
-    ./core
-    ./options
-    ./keymap
-    ./plugins
-  ];
+    imports = [
+        ./core
+        ./options
+        ./keymap
+        ./plugins
+    ];
 }
