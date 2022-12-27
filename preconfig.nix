@@ -23,7 +23,8 @@
                     c = true;
                 };
                 misc = {
-                    enableIndentBlankline = true;
+                    enable-indent-blankline = true;
+                    enable-comment-nvim = true;
                 };
             };
         };

@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "comment-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1671952204,
+        "narHash": "sha256-vx6wVWQ6KQtQD6BPTu2UrtKm9wlKzEG3PqdyLMhCRxQ=",
+        "owner": "numToStr",
+        "repo": "Comment.nvim",
+        "rev": "45dc21a71ad1450606f5e98261badb28db59d74c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numToStr",
+        "repo": "Comment.nvim",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "locked": {
         "lastModified": 1667395993,
@@ -184,6 +200,7 @@
     },
     "root": {
       "inputs": {
+        "comment-nvim": "comment-nvim",
         "gitsigns-nvim": "gitsigns-nvim",
         "indent-blankline-nvim": "indent-blankline-nvim",
         "neovim": "neovim",

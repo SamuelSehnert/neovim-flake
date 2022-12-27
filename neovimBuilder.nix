@@ -1,9 +1,6 @@
-# { pkgs, lib ? pkgs.lib, ... }: {config}: let
 { pkgs, config, ... }:
 let
     lib = pkgs.lib;
-
-    #neovimPlugins = pkgs.neovimPlugins;
 
     vimOptions = lib.evalModules {
         modules = [
@@ -25,7 +22,6 @@ in
         configure = {
             customRC = customNeovim.configRC;
 
-            # packages.myVimPackage = with pkgs.neovimPlugins; {
             packages.myVimPackage = {
               start = builtins.filter (f: f != null) customNeovim.startupPlugins;
               opt = builtins.filter (f: f != null) customNeovim.optionalPlugins;
