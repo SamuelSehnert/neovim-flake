@@ -31,91 +31,60 @@
         indent-blankline-nvim = { url = "github:lukas-reineke/indent-blankline.nvim"; flake = false; };
     };
 
-    outputs = inputs:
-    let
+    outputs = inputs: let
         system = "x86_64-linux";
 
         neovimBuilder = import ./neovimBuilder.nix;
 
         pluginOverlay = final: prev: let
+            # I find this slightly better than listing out the plugins in an array, but it's still pretty busted...
+            plugins = builtins.attrNames ( builtins.removeAttrs inputs [ "nixpkgs" "neovim" "self" ] );
 
-          # I find this slightly better than listing out the plugins in an array, but it's still pretty busted...
-          plugins = builtins.attrNames ( builtins.removeAttrs inputs [ "nixpkgs" "neovim" "self" ] );
-
-          buildPlug = name: final.vimUtils.buildVimPluginFrom2Nix {
-            pname = name;
-            version = "master";
-            src = builtins.getAttr name inputs;
-          }; in {
-          neovimPlugins = builtins.listToAttrs (map (name: { inherit name; value = buildPlug name; }) plugins);
+            buildPlug = name: final.vimUtils.buildVimPluginFrom2Nix {
+                pname = name;
+                version = "master";
+                src = builtins.getAttr name inputs;
+            };
+        in {
+            neovimPlugins = builtins.listToAttrs (map (name: { inherit name; value = buildPlug name; }) plugins);
         };
 
         customPkgs = import inputs.nixpkgs {
-          inherit system;
-          overlays = [
-            pluginOverlay
-            (final: prev: { neovim-unwrapped = inputs.neovim.packages.${prev.system}.neovim; })
-          ];
-        };
-
-        basicConfig = {
-          customNeovim = {
-
-            options = {
-              colorscheme = "desert";
-              mouse = "a";
-              lineNumber = "relativenumber";
-            };
-
-            keymaps.leader = ",";
-
-            plugins = {
-              nvim-tree-lua.enable = true;
-              nvim-tree-lua.webDevIcons = true;
-              treesitter.enable = true;
-              gitsigns.enable = true;
-              gitsigns.blame = true;
-              telescope.enable = true;
-              telescope.fuzzyFinder = true;
-              lsp = {
-                enable = true;
-                nix = true;
-                python = true;
-                c = true;
-              };
-              misc = {
-                enableIndentBlankline = true;
-              };
-            };
-
-          };
+            inherit system;
+            overlays = [
+                pluginOverlay
+                (final: prev: { neovim-unwrapped = inputs.neovim.packages.${prev.system}.neovim; })
+            ];
         };
 
     in rec {
-
-      # For debugging
-      # inherit plugins pluginOverlay customPkgs;
-
-      packages.${system} = {
-        preconfigured = neovimBuilder {
-          pkgs = customPkgs;
-          config = basicConfig;
+        packages.${system} = rec {
+            empty = neovimBuilder { pkgs = customPkgs; config = {}; };
+            preconfigured = neovimBuilder {
+                pkgs = customPkgs;
+                config = (import ./preconfig.nix).basicConfig;
+            };
+            default = empty;
         };
-      };
 
-      # This is how the flake can get added to another system;
-      overlays.default = final: prev: {
-        inherit neovimBuilder;
-        preconfigured = packages.${system}.preconfigured;
-        neovimPlugins = customPkgs.neovimPlugins;
-      };
+        # This is how the flake can get added to another system;
+        overlays.default = final: prev: {
+            inherit neovimBuilder;
+            preconfigured = packages.${system}.preconfigured;
+            neovimPlugins = customPkgs.neovimPlugins;
+        };
 
-      # This is for $flake run. Mostly for testing
-      apps.${system} = {
-          default = {
-              type = "app";
-              program = "${packages.${system}.preconfigured}/bin/nvim";
-          };
-      };
+        # This is for $flake run. Mostly for testing
+        apps.${system} = rec {
+            empty = {
+                type = "app";
+                program = "${packages.${system}.empty}/bin/nvim";
+            };
+            preconfigured = {
+                type = "app";
+                program = "${packages.${system}.preconfigured}/bin/nvim";
+            };
+            default = empty;
+        };
     };
 }

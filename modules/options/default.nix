@@ -6,7 +6,6 @@ let
     cfg = config.customNeovim.options;
 in
 {
-    # Needs to be the same as cfg
     options.customNeovim.options = {
         colorscheme = mkOption {
             description = "Set the colorscheme. If left default or blank, default vim colorscheme will be uesd";
@@ -17,13 +16,13 @@ in
         syntax = mkOption {
             description = "To enable syntax highlighting or not";
             type = types.bool;
-            default = true;
+            default = false;
         };
 
         lineNumber = mkOption {
             description = "Set line number";
-            type = with types; enum [ "relative" "relativenumber" "number" ];
-            default = "number";
+            type = with types; enum [ "relative" "relativenumber" "number" "" ];
+            default = "";
         };
 
         tabstop = mkOption {
@@ -71,7 +70,7 @@ in
         wrap = mkOption {
             description = "To wrap lines or not";
             type = types.bool;
-            default = false;
+            default = true;
         };
 
         scrolloff = mkOption {
@@ -83,13 +82,13 @@ in
         hlsearch = mkOption {
             description = "To highlight search results";
             type = types.bool;
-            default = true;
+            default = false;
         };
 
         ignorecase = mkOption {
             description = "To ignore case when searching";
             type = types.bool;
-            default = true;
+            default = false;
         };
 
         mouse = mkOption {
@@ -111,21 +110,20 @@ in
             ${ writeIf { c = (cfg.lineNumber == "relativenumber"); v1 = "set relativenumber number"; } }
         '';
         customNeovim.luaConfigRC = ''
-            local opt = vim.opt;
-            opt.tabstop = ${toString cfg.tabstop};
-            opt.softtabstop = ${toString cfg.softtabstop};
-            opt.shiftwidth = ${toString cfg.shiftwidth};
-            opt.expandtab = ${boolConvert cfg.expandtab};
-            opt.smartindent = ${boolConvert cfg.smartindent};
-            opt.smarttab = ${boolConvert cfg.smarttab};
-            opt.smartcase = ${boolConvert cfg.smartcase};
-            opt.wrap = ${boolConvert cfg.wrap};
-            opt.scrolloff = ${toString cfg.scrolloff};
+            vim.opt.tabstop = ${toString cfg.tabstop}
+            vim.opt.softtabstop = ${toString cfg.softtabstop}
+            vim.opt.shiftwidth = ${toString cfg.shiftwidth}
+            vim.opt.expandtab = ${boolConvert cfg.expandtab}
+            vim.opt.smartindent = ${boolConvert cfg.smartindent}
+            vim.opt.smarttab = ${boolConvert cfg.smarttab}
+            vim.opt.smartcase = ${boolConvert cfg.smartcase}
+            vim.opt.wrap = ${boolConvert cfg.wrap}
+            vim.opt.scrolloff = ${toString cfg.scrolloff}
 
-            opt.hlsearch = ${boolConvert cfg.hlsearch};
-            opt.ignorecase = ${boolConvert cfg.ignorecase};
+            vim.opt.hlsearch = ${boolConvert cfg.hlsearch}
+            vim.opt.ignorecase = ${boolConvert cfg.ignorecase}
 
-            opt.mouse = ${toString cfg.mouse};
+            vim.opt.mouse = ${if cfg.mouse == "" then "\"\"" else (toString cfg.mouse)}
         '';
     };
 }
