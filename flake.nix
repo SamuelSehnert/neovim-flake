@@ -38,7 +38,10 @@
     outputs = inputs: let
         system = "x86_64-linux";
 
-        neovimBuilder = import ./neovimBuilder.nix;
+        lib = import ./lib;
+
+        # neovimBuilder = import ./neovimBuilder.nix;
+        # neovimBuilder = lib.neovimBuilder;
 
         pluginOverlay = final: prev: let
             # I find this slightly better than listing out the plugins in an array, but it's still pretty busted...
@@ -63,8 +66,8 @@
 
     in rec {
         packages.${system} = rec {
-            empty = neovimBuilder { pkgs = customPkgs; config = {}; };
-            preconfigured = neovimBuilder {
+            empty = lib.neovimBuilder { pkgs = customPkgs; config = {}; };
+            preconfigured = lib.neovimBuilder {
                 pkgs = customPkgs;
                 config = (import ./preconfig.nix).basicConfig;
             };
@@ -72,7 +75,9 @@
         };
 
         # This is how the flake can get added to another system;
-        overlays.default = final: prev: {
+        overlays.default = final: prev: let
+            neovimBuilder = lib.neovimBuilder;
+        in {
             inherit neovimBuilder;
             preconfigured = packages.${system}.preconfigured;
             neovimPlugins = customPkgs.neovimPlugins;
