@@ -10,6 +10,7 @@ let
 
         specialArgs = {
             inherit pkgs; 
+            functions = import ./functions.nix;
         };
       
     };

@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ...}:
+{ pkgs, config, lib, functions, ...}:
 with lib;
 with builtins;
 
@@ -10,16 +10,14 @@ in {
         enable-comment-nvim = mkEnableOption "Enable comment-nvim";
     };
 
-    config = let
-        writeIf = { c, v1, v2 ? "" }: if c then v1 else v2;
-    in {
+    config = {
         customNeovim.startupPlugins = with pkgs.neovimPlugins; [
             ( if cfg.enable-indent-blankline then indent-blankline-nvim else null )
             ( if cfg.enable-comment-nvim then comment-nvim else null )
         ];
 
         customNeovim.luaConfigRC = ''
-            ${writeIf {
+            ${functions.writeIf {
                 c = cfg.enable-indent-blankline;
                 v1 = ''
                     require("indent_blankline").setup {
@@ -27,7 +25,7 @@ in {
                     }
                 '';
             }}
-            ${writeIf {
+            ${functions.writeIf {
                 c = cfg.enable-comment-nvim;
                 v1 = ''
                     require("Comment").setup {}

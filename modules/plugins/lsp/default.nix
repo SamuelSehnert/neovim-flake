@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, functions, ... }:
 with lib;
 with builtins;
 
@@ -20,12 +20,10 @@ in
             nvim-lspconfig
         ];
 
-        customNeovim.luaConfigRC = let
-            writeIf = { c, v1, v2 ? "" }: if c then v1 else v2;
-        in ''
+        customNeovim.luaConfigRC = ''
             local lspconfig = require('lspconfig')
 
-            ${writeIf { c = cfg.nix; v1 = ''
+            ${functions.writeIf { c = cfg.nix; v1 = ''
                 -- Nix config
                 lspconfig.nil_ls.setup{
                     capabilities = capabilities,
@@ -34,7 +32,7 @@ in
                 }
             ''; } }
 
-            ${writeIf { c = cfg.python; v1 = ''
+            ${functions.writeIf { c = cfg.python; v1 = ''
                 -- Python config
                 lspconfig.pyright.setup{
                     capabilities = capabilities;
@@ -43,7 +41,7 @@ in
                 }
             ''; } }
 
-            ${writeIf { c = cfg.c; v1 = ''
+            ${functions.writeIf { c = cfg.c; v1 = ''
                 -- CCLS (clang) config
                 lspconfig.ccls.setup{
                     capabilities = capabilities;

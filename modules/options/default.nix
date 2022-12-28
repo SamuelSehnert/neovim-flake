@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ...}:
+{ pkgs, lib, config, functions, ...}:
 with lib;
 with builtins;
 
@@ -98,30 +98,27 @@ in
         };
     };
 
-    config = let 
-        writeIf = { c, v1, v2 ? "" }: if c then v1 else v2;
-        boolConvert = bool: if bool then "true" else "false";
-    in {
+    config = {
         customNeovim.configRC = ''
             colorscheme ${toString cfg.colorscheme}
-            syntax ${ writeIf { c = cfg.syntax; v1 = "on"; v2 = "off"; } }
+            syntax ${ functions.writeIf { c = cfg.syntax; v1 = "on"; v2 = "off"; } }
 
-            ${ writeIf { c = (cfg.lineNumber == "number"); v1 = "set number"; } }
-            ${ writeIf { c = (cfg.lineNumber == "relativenumber"); v1 = "set relativenumber number"; } }
+            ${ functions.writeIf { c = (cfg.lineNumber == "number"); v1 = "set number"; } }
+            ${ functions.writeIf { c = (cfg.lineNumber == "relativenumber"); v1 = "set relativenumber number"; } }
         '';
         customNeovim.luaConfigRC = ''
             vim.opt.tabstop = ${toString cfg.tabstop}
             vim.opt.softtabstop = ${toString cfg.softtabstop}
             vim.opt.shiftwidth = ${toString cfg.shiftwidth}
-            vim.opt.expandtab = ${boolConvert cfg.expandtab}
-            vim.opt.smartindent = ${boolConvert cfg.smartindent}
-            vim.opt.smarttab = ${boolConvert cfg.smarttab}
-            vim.opt.smartcase = ${boolConvert cfg.smartcase}
-            vim.opt.wrap = ${boolConvert cfg.wrap}
+            vim.opt.expandtab = ${boolToString cfg.expandtab}
+            vim.opt.smartindent = ${boolToString cfg.smartindent}
+            vim.opt.smarttab = ${boolToString cfg.smarttab}
+            vim.opt.smartcase = ${boolToString cfg.smartcase}
+            vim.opt.wrap = ${boolToString cfg.wrap}
             vim.opt.scrolloff = ${toString cfg.scrolloff}
 
-            vim.opt.hlsearch = ${boolConvert cfg.hlsearch}
-            vim.opt.ignorecase = ${boolConvert cfg.ignorecase}
+            vim.opt.hlsearch = ${boolToString cfg.hlsearch}
+            vim.opt.ignorecase = ${boolToString cfg.ignorecase}
 
             vim.opt.mouse = ${if cfg.mouse == "" then "\"\"" else (toString cfg.mouse)}
         '';

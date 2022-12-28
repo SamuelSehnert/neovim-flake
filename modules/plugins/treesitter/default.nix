@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ...}:
+{ pkgs, config, lib, functions, ...}:
 with lib;
 with builtins;
 
@@ -11,15 +11,13 @@ in {
     folding = mkEnableOption "Enable folding";
   };
 
-  config = let
-    writeIf = { c, v1, v2 ? "" }: if c then v1 else v2;
-  in mkIf cfg.enable {
+  config = mkIf cfg.enable {
       customNeovim.startupPlugins = with pkgs.neovimPlugins; [
         vim-nix
         nvim-treesitter
       ];
 
-      customNeovim.configRC = writeIf { c = cfg.folding; v1 = ''
+      customNeovim.configRC = functions.writeIf { c = cfg.folding; v1 = ''
         " Tree-sitter based folding
         set foldmethod=expr
         set foldexpr=nvim_treesitter#foldexpr()

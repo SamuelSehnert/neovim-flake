@@ -11,9 +11,7 @@ in {
         fuzzyFinder = mkEnableOption "Enable rip-grep for fuzzy finder";
     };
 
-    config = let
-        writeIf = { c, v1, v2 ? "" }: if c then v1 else v2;
-    in mkIf cfg.enable {
+    config = mkIf cfg.enable {
         customNeovim.startupPlugins = with pkgs.neovimPlugins; [
             telescope-nvim
             telescope-fzf-native-nvim # For optimization

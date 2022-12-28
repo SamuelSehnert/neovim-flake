@@ -26,8 +26,7 @@ in
 
   config = {
     customNeovim.coreKeymaps = let
-      vimBoolConvert = input: if input then "true" else "false";
-      ops = " { noremap = ${ vimBoolConvert cfg.noremap }, silent = ${ vimBoolConvert cfg.silent } } ";
+      ops = " { noremap = ${ boolToString cfg.noremap }, silent = ${ boolToString cfg.silent } } ";
     in
       ''
       local options = ${ops}

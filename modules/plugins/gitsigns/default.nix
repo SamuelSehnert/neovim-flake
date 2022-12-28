@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ...}:
+{ pkgs, config, lib, functions, ...}:
 with lib;
 with builtins;
 
@@ -10,16 +10,14 @@ in {
         blame = mkEnableOption "Enable git blame";
     };
 
-    config = let
-        writeIf = { c, v1, v2 ? "" }: if c then v1 else v2;
-    in mkIf cfg.enable {
+    config = mkIf cfg.enable {
         customNeovim.startupPlugins = with pkgs.neovimPlugins; [
             gitsigns-nvim
         ];
 
         customNeovim.luaConfigRC = ''
             require('gitsigns').setup{
-                ${writeIf { c = cfg.blame; v1 = "current_line_blame = true"; }},
+                ${functions.writeIf { c = cfg.blame; v1 = "current_line_blame = true"; }},
             }
         '';
     };
