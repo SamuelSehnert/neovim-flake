@@ -17,20 +17,16 @@ in {
         ];
 
         customNeovim.luaConfigRC = ''
-            ${functions.writeIf {
-                c = cfg.enable-indent-blankline;
-                v1 = ''
-                    require("indent_blankline").setup {
-                        show_current_context = true,
-                    }
-                '';
-            }}
-            ${functions.writeIf {
-                c = cfg.enable-comment-nvim;
-                v1 = ''
+            ${functions.writeIf cfg.enable-indent-blankline ''
+                  require("indent_blankline").setup {
+                      show_current_context = true,
+                  }
+              ''
+            }
+            ${functions.writeIf cfg.enable-comment-nvim ''
                     require("Comment").setup {}
-                '';
-            }}
+                ''
+            }
         '';
     };
 }

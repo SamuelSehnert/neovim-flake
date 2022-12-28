@@ -23,32 +23,32 @@ in
         customNeovim.luaConfigRC = ''
             local lspconfig = require('lspconfig')
 
-            ${functions.writeIf { c = cfg.nix; v1 = ''
+            ${functions.writeIf cfg.nix ''
                 -- Nix config
                 lspconfig.nil_ls.setup{
                     capabilities = capabilities,
                     on_attach=default_on_attach,
                     cmd = {"${pkgs.nil}/bin/nil"},
                 }
-            ''; } }
+            ''}
 
-            ${functions.writeIf { c = cfg.python; v1 = ''
+            ${functions.writeIf cfg.python ''
                 -- Python config
                 lspconfig.pyright.setup{
                     capabilities = capabilities;
                     on_attach=default_on_attach;
                     cmd = {"${pkgs.nodePackages.pyright}/bin/pyright-langserver", "--stdio"}
                 }
-            ''; } }
+            ''}
 
-            ${functions.writeIf { c = cfg.c; v1 = ''
+            ${functions.writeIf cfg.c ''
                 -- CCLS (clang) config
                 lspconfig.ccls.setup{
                     capabilities = capabilities;
                     on_attach=default_on_attach;
                     cmd = {"${pkgs.ccls}/bin/ccls"}
                 }
-            ''; } }
+            ''}
         '';
     };
 }

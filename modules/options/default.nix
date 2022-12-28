@@ -101,10 +101,10 @@ in
     config = {
         customNeovim.configRC = ''
             colorscheme ${toString cfg.colorscheme}
-            syntax ${ functions.writeIf { c = cfg.syntax; v1 = "on"; v2 = "off"; } }
+            syntax ${ if cfg.syntax then "on" else "off" }
 
-            ${ functions.writeIf { c = (cfg.lineNumber == "number"); v1 = "set number"; } }
-            ${ functions.writeIf { c = (cfg.lineNumber == "relativenumber"); v1 = "set relativenumber number"; } }
+            ${ functions.writeIf (cfg.lineNumber == "number") "set number" }
+            ${ functions.writeIf (cfg.lineNumber == "relativenumber") "set relativenumber number" }
         '';
         customNeovim.luaConfigRC = ''
             vim.opt.tabstop = ${toString cfg.tabstop}

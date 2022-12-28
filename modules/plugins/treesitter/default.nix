@@ -17,12 +17,12 @@ in {
         nvim-treesitter
       ];
 
-      customNeovim.configRC = functions.writeIf { c = cfg.folding; v1 = ''
+      customNeovim.configRC = functions.writeIf cfg.folding ''
         " Tree-sitter based folding
         set foldmethod=expr
         set foldexpr=nvim_treesitter#foldexpr()
         set nofoldenable
-      ''; };
+      '';
 
       customNeovim.luaConfigRC = ''
         -- Treesitter config
