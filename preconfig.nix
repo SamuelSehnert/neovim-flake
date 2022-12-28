@@ -2,10 +2,11 @@
     basicConfig = {
         customNeovim = {
             options = {
-                colorscheme = "desert";
                 syntax = true;
                 mouse = "a";
                 lineNumber = "relativenumber";
+                wrap = false;
+                autoindent = true;
             };
             keymaps.leader = ",";
             plugins = {

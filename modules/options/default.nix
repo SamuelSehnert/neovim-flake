@@ -49,6 +49,12 @@ in
             default = true;
         };
 
+        autoindent = mkOption {
+            description = "Set autoindent";
+            type = types.bool;
+            default = true;
+        };
+
         smartindent = mkOption {
             description = "Try to be smart about indents";
             type = types.bool;
@@ -111,6 +117,7 @@ in
             vim.opt.softtabstop = ${toString cfg.softtabstop}
             vim.opt.shiftwidth = ${toString cfg.shiftwidth}
             vim.opt.expandtab = ${boolToString cfg.expandtab}
+            vim.opt.autoindent = ${boolToString cfg.autoindent}
             vim.opt.smartindent = ${boolToString cfg.smartindent}
             vim.opt.smarttab = ${boolToString cfg.smarttab}
             vim.opt.smartcase = ${boolToString cfg.smartcase}
