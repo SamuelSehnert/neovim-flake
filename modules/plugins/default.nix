@@ -8,5 +8,6 @@
         ./telescope
         ./treesitter
         ./lualine
+        ./latex
     ];
 }

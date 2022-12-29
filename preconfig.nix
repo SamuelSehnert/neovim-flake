@@ -19,6 +19,8 @@
                 telescope.fuzzyFinder = true;
                 lualine.enable = true;
                 lualine.icons = true;
+                latex.enable = true;
+                latex.viewer = "zathura";
                 lsp = {
                     enable = true;
                     nix = true;

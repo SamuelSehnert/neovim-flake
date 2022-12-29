@@ -230,7 +230,8 @@
         "ripgrep": "ripgrep",
         "telescope-fzf-native-nvim": "telescope-fzf-native-nvim",
         "telescope-nvim": "telescope-nvim",
-        "vim-nix": "vim-nix"
+        "vim-nix": "vim-nix",
+        "vimtex": "vimtex"
       }
     },
     "telescope-fzf-native-nvim": {
@@ -278,6 +279,22 @@
       "original": {
         "owner": "LnL7",
         "repo": "vim-nix",
+        "type": "github"
+      }
+    },
+    "vimtex": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1672055641,
+        "narHash": "sha256-h5CNput0PfFvwRMmIETOq8FMs2nxeP1l4TwafvJPp9s=",
+        "owner": "lervag",
+        "repo": "vimtex",
+        "rev": "5e03d9052de30c8e4c2f4907600783112454028a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lervag",
+        "repo": "vimtex",
         "type": "github"
       }
     }

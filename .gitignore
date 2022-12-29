@@ -1,2 +1,7 @@
 result
 .ccls-cache
+
+**/.latexrun.db.lock
+
+testfiles/tex/*
+!testfiles/tex/tex.tex
