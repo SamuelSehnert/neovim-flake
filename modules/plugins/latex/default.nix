@@ -6,7 +6,7 @@ let
     cfg = config.customNeovim.plugins.latex;
 in {
     options.customNeovim.plugins.latex = {
-        enable = mkEnableOption "Enable Latex plugins";
+        enable = mkEnableOption "Enable Latex plugins: Requires a viewer and the $latexmk command";
 
         texMapLeader = mkOption {
             description = "Map leader for tex commands. Default: If blank, defaults to keymaps.mapLeader. If blank, and keymaps.mapLeader blank, defaults to backslash";
