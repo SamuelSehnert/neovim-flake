@@ -6,24 +6,36 @@ let
     cfg = config.customNeovim.plugins.misc;
 in {
     options.customNeovim.plugins.misc = {
-        enable-indent-blankline = mkEnableOption "Enable indent-blankline-nvim";
-        enable-comment-nvim = mkEnableOption "Enable comment-nvim";
+        indent-blankline = {
+            enable = mkEnableOption "Enable indent-blankline-nvim";
+            char = mkOption {
+                description = "Character to use for indent-blankline";
+                type = types.str;
+                default = "";
+            };
+          };
+        comment-nvim.enable = mkEnableOption "Enable comment-nvim";
+        vim-sleuth.enable = mkEnableOption "Enable vim-sleuth";
     };
 
     config = {
         customNeovim.startupPlugins = with pkgs.neovimPlugins; [
-            ( if cfg.enable-indent-blankline then indent-blankline-nvim else null )
-            ( if cfg.enable-comment-nvim then comment-nvim else null )
+            ( if cfg.indent-blankline.enable then indent-blankline-nvim else null )
+            ( if cfg.comment-nvim.enable then comment-nvim else null )
+            ( if cfg.vim-sleuth.enable then vim-sleuth else null )
         ];
 
         customNeovim.luaConfigRC = ''
-            ${functions.writeIf cfg.enable-indent-blankline
+            ${functions.writeIf cfg.indent-blankline.enable
                 ''
                     require("indent_blankline").setup {
+                        ${functions.writeIf (cfg.indent-blankline.char != "")
+                            "char = '${toString cfg.indent-blankline.char}',"
+                        }
                     }
                 ''
             }
-            ${functions.writeIf cfg.enable-comment-nvim
+            ${functions.writeIf cfg.comment-nvim.enable
                 ''
                     require("Comment").setup {}
                 ''

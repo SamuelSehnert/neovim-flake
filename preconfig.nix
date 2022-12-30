@@ -21,6 +21,7 @@
                 lualine.icons = true;
                 latex.enable = true;
                 latex.viewer = "zathura";
+                latex.texMapLeader = "1";
                 lsp = {
                     enable = true;
                     nix = true;
@@ -28,8 +29,12 @@
                     c = true;
                 };
                 misc = {
-                    enable-indent-blankline = true;
-                    enable-comment-nvim = true;
+                    indent-blankline = {
+                        enable = true;
+                        char = "┊";
+                    };
+                    comment-nvim.enable = true;
+                    vim-sleuth.enable = true;
                 };
             };
         };

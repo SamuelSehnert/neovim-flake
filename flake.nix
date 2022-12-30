@@ -36,6 +36,7 @@
         gitsigns-nvim = { url = "github:lewis6991/gitsigns.nvim"; flake = false; };
         indent-blankline-nvim = { url = "github:lukas-reineke/indent-blankline.nvim"; flake = false; };
         comment-nvim = { url = "github:numToStr/Comment.nvim"; flake = false; };
+        vim-sleuth = { url = "github:tpope/vim-sleuth"; flake = false; };
     };
 
     outputs = inputs: let
