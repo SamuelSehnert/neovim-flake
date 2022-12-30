@@ -106,13 +106,19 @@ in
 
     config = {
         customNeovim.configRC = ''
-            colorscheme ${toString cfg.colorscheme}
             syntax ${ if cfg.syntax then "on" else "off" }
 
             ${ functions.writeIf (cfg.lineNumber == "number") "set number" }
             ${ functions.writeIf (cfg.lineNumber == "relativenumber") "set relativenumber number" }
         '';
         customNeovim.luaConfigRC = ''
+            vim.cmd [[colorscheme ${
+                if config.customNeovim.themes.enable then
+                    config.customNeovim.themes.theme
+                else
+                    cfg.colorscheme 
+                }]]
+
             vim.opt.tabstop = ${toString cfg.tabstop}
             vim.opt.softtabstop = ${toString cfg.softtabstop}
             vim.opt.shiftwidth = ${toString cfg.shiftwidth}

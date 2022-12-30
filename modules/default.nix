@@ -5,5 +5,6 @@
         ./options
         ./keymap
         ./plugins
+        ./themes
     ];
 }

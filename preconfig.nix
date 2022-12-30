@@ -3,12 +3,17 @@
         customNeovim = {
             options = {
                 syntax = true;
+                colorscheme = "desert";
                 mouse = "a";
                 lineNumber = "relativenumber";
                 wrap = false;
                 autoindent = true;
             };
             keymaps.leader = ",";
+            themes = {
+                enable = true;
+                theme = "gruvbox";
+            };
             plugins = {
                 nvim-tree-lua.enable = true;
                 nvim-tree-lua.webDevIcons = true;
