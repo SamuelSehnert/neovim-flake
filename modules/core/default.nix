@@ -37,32 +37,24 @@ in {
             default = "";
         };
 
-        extraKeymaps = mkOption {
-            description = "Vim maps in lua";
-            type = types.lines;
-            default = "";
-        };
-
         startupPlugins = mkOption {
             description = "Plugins to load on start";
-            # type = with types; listOf package;
             type = with types; listOf (nullOr package);
-            default = [ ];
+            default = [];
         };
 
         optionalPlugins = mkOption {
             description = "Plugins to be optionally loaded";
-            type = with types; listOf package;
-            default = [ ];
+            type = with types; listOf (nullOr package);
+            default = [];
         };
     };
 
     config = {
         customNeovim.configRC = ''
             lua << EOF
-                ${cfg.luaConfigRC}
                 ${cfg.coreKeymaps}
-                ${cfg.extraKeymaps}
+                ${cfg.luaConfigRC}
             EOF
         '';
     };

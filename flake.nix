@@ -15,6 +15,7 @@
 
         # Tree-sitter https://github.com/nvim-treesitter/nvim-treesitter
         nvim-treesitter = { url = "github:nvim-treesitter/nvim-treesitter"; flake = false; };
+        nvim-treesitter-context = { url = "github:nvim-treesitter/nvim-treesitter-context"; flake = false; };
         vim-nix = { url = "github:LnL7/vim-nix"; flake = false; };
 
         # LSP
@@ -37,15 +38,14 @@
         indent-blankline-nvim = { url = "github:lukas-reineke/indent-blankline.nvim"; flake = false; };
         comment-nvim = { url = "github:numToStr/Comment.nvim"; flake = false; };
         vim-sleuth = { url = "github:tpope/vim-sleuth"; flake = false; };
+        vim-fugitive = { url = "github:tpope/vim-fugitive"; flake = false; };
+        vim-rhubarb = { url = "github:tpope/vim-rhubarb"; flake = false; };
     };
 
     outputs = inputs: let
         system = "x86_64-linux";
 
         lib = import ./lib;
-
-        # neovimBuilder = import ./neovimBuilder.nix;
-        # neovimBuilder = lib.neovimBuilder;
 
         pluginOverlay = final: prev: let
             # I find this slightly better than listing out the plugins in an array, but it's still pretty busted...
@@ -75,15 +75,13 @@
                 pkgs = customPkgs;
                 config = (import ./preconfig.nix).basicConfig;
             };
-            default = empty;
+            default = preconfigured;
         };
 
-        # This is how the flake can get added to another system;
-        overlays.default = final: prev: let
-            neovimBuilder = lib.neovimBuilder;
-        in {
-            inherit neovimBuilder;
+        # This is how the flake can get added to another system AND customize options.
+        overlays.default = final: prev: {
             preconfigured = packages.${system}.preconfigured;
+            neovimBuilder = lib.neovimBuilder;
             neovimPlugins = customPkgs.neovimPlugins;
         };
 
@@ -97,7 +95,7 @@
                 type = "app";
                 program = "${packages.${system}.preconfigured}/bin/nvim";
             };
-            default = empty;
+            default = preconfigured;
         };
     };
 }

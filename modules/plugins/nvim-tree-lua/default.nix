@@ -26,14 +26,11 @@ in
             ( if cfg.webDevIcons then nvim-web-devicons else null )
         ];
 
-        customNeovim.extraKeymaps = ''
-            vim.api.nvim_set_keymap("n", "<leader>e", ":NvimTreeToggle<cr>", options)
-        '';
-
         customNeovim.luaConfigRC = ''
             require("nvim-tree").setup({
                 open_on_setup = ${boolToString cfg.openOnStart},
             })
+            vim.api.nvim_set_keymap("n", "<leader>e", ":NvimTreeToggle<cr>", options)
         '';
     };
 }

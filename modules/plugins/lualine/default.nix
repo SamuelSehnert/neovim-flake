@@ -8,6 +8,17 @@ in {
     options.customNeovim.plugins.lualine = {
         enable = mkEnableOption "Enable lualine";
         icons = mkEnableOption "Enable Icons";
+        seperator = mkOption {
+            description = "What character to use as a seperator";
+            type = types.str;
+            default = "";
+        };
+        section-seperator = mkOption {
+            description = "What character to use as a section seperator";
+            type = types.str;
+            default = "";
+        };
+
     };
 
     config = mkIf cfg.enable {
@@ -18,7 +29,11 @@ in {
 
         customNeovim.luaConfigRC = ''
             require'lualine'.setup {
-                icons_enabled = ${boolToString cfg.icons},
+                options = {
+                    icons_enabled = ${boolToString cfg.icons},
+                    ${functions.writeIf (cfg.seperator != "") "component_seperators = '${cfg.seperator}'"}
+                    ${functions.writeIf (cfg.section-seperator != "") "section_seperators = '${cfg.section-seperators}'"}
+                }
             }
         '';
     };

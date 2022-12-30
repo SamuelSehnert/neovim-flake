@@ -2,8 +2,9 @@ import random
 
 def main():
     print(random.randint)
+    testFunction(4)
 
-def testFunc(x):
+def testFunction(x):
     if x == 1:
         return 2
     else:

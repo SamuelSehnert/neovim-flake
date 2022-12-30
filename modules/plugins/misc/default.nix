@@ -16,6 +16,8 @@ in {
           };
         comment-nvim.enable = mkEnableOption "Enable comment-nvim";
         vim-sleuth.enable = mkEnableOption "Enable vim-sleuth";
+        vim-fugitive = mkEnableOption "Enable vim-fugitive";
+        vim-rhubarb = mkEnableOption "Enable vim-rhubarb";
     };
 
     config = {
@@ -23,6 +25,8 @@ in {
             ( if cfg.indent-blankline.enable then indent-blankline-nvim else null )
             ( if cfg.comment-nvim.enable then comment-nvim else null )
             ( if cfg.vim-sleuth.enable then vim-sleuth else null )
+            ( if cfg.vim-fugitive then vim-fugitive else null )
+            ( if cfg.vim-rhubarb then vim-rhubarb else null )
         ];
 
         customNeovim.luaConfigRC = ''

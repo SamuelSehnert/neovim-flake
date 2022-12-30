@@ -166,6 +166,22 @@
         "type": "github"
       }
     },
+    "nvim-treesitter-context": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1671369025,
+        "narHash": "sha256-x8wRvQCHpPI3oM/nehd7vzMitrsBGZVY2y46JqIlafM=",
+        "owner": "nvim-treesitter",
+        "repo": "nvim-treesitter-context",
+        "rev": "d28654b012d4c56beafec630ef7143275dff76f8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-treesitter",
+        "repo": "nvim-treesitter-context",
+        "type": "github"
+      }
+    },
     "nvim-web-devicons": {
       "flake": false,
       "locked": {
@@ -225,12 +241,15 @@
         "nvim-lspconfig": "nvim-lspconfig",
         "nvim-tree-lua": "nvim-tree-lua",
         "nvim-treesitter": "nvim-treesitter",
+        "nvim-treesitter-context": "nvim-treesitter-context",
         "nvim-web-devicons": "nvim-web-devicons",
         "plenary-nvim": "plenary-nvim",
         "ripgrep": "ripgrep",
         "telescope-fzf-native-nvim": "telescope-fzf-native-nvim",
         "telescope-nvim": "telescope-nvim",
+        "vim-fugitive": "vim-fugitive",
         "vim-nix": "vim-nix",
+        "vim-rhubarb": "vim-rhubarb",
         "vim-sleuth": "vim-sleuth",
         "vimtex": "vimtex"
       }
@@ -267,6 +286,22 @@
         "type": "github"
       }
     },
+    "vim-fugitive": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1672379077,
+        "narHash": "sha256-tYP15hSOqF0pZW5iEQL8D9RdKNEgBmGQggolu54lOlA=",
+        "owner": "tpope",
+        "repo": "vim-fugitive",
+        "rev": "99cdb88bc64063dc4656ae53496f06fb2a394cd4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tpope",
+        "repo": "vim-fugitive",
+        "type": "github"
+      }
+    },
     "vim-nix": {
       "flake": false,
       "locked": {
@@ -280,6 +315,22 @@
       "original": {
         "owner": "LnL7",
         "repo": "vim-nix",
+        "type": "github"
+      }
+    },
+    "vim-rhubarb": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1658927824,
+        "narHash": "sha256-nNzQRw0it/qMXg5xzYDm1oi6y9szHSrzXdXK1683hbA=",
+        "owner": "tpope",
+        "repo": "vim-rhubarb",
+        "rev": "cad60fe382f3f501bbb28e113dfe8c0de6e77c75",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tpope",
+        "repo": "vim-rhubarb",
         "type": "github"
       }
     },
