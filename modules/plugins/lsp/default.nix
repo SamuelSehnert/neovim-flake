@@ -20,6 +20,8 @@ in
             typescript = mkEnableOption "Javascript/Typescript LSP";
             tex = mkEnableOption "Tex/LaTeX LSP";
             rust = mkEnableOption "Rust LSP";
+            css = mkEnableOption "CSS LSP";
+            json = mkEnableOption "JSON LSP";
         };
     };
 
@@ -32,6 +34,7 @@ in
         customNeovim.luaConfigRC = ''
             local lspconfig = require('lspconfig')
             local capabilities = vim.lsp.protocol.make_client_capabilities()
+            capabilities.textDocument.completion.completionItem.snippetSupport = true
 
             local on_attach = function(_, bufnr)
                 local nmap = function(keys, func, desc)
@@ -121,6 +124,22 @@ in
                     capabilities = capabilities,
                     on_attach=on_attach,
                     cmd = {"${pkgs.rust-analyzer}/bin/rust-analyzer"}
+                }
+            ''}
+
+            ${functions.writeIf ( cfg.languages.css || cfg.languages.all ) ''
+                lspconfig.cssls.setup {
+                    capabilities = capabilities,
+                    on_attach=on_attach,
+                    cmd = {"${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-css-language-server", "--stdio"}
+                }
+            ''}
+
+            ${functions.writeIf ( cfg.languages.json || cfg.languages.all ) ''
+                lspconfig.jsonls.setup {
+                    capabilities = capabilities,
+                    on_attach=on_attach,
+                    cmd = {"${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-json-language-server", "--stdio"}
                 }
             ''}
         '';
