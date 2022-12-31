@@ -9,5 +9,6 @@
         ./treesitter
         ./lualine
         ./latex
+        ./autocomplete
     ];
 }

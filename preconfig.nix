@@ -44,12 +44,10 @@
                 lsp = {
                     enable = true;
                     languages = {
-                        nix = true;
-                        python = true;
-                        c = true;
-                        ocaml = true;
+                        all = true;
                     };
                 };
+                autocomplete.enable = true;
                 misc = {
                     indent-blankline = {
                         enable = true;
@@ -60,6 +58,7 @@
                     vim-fugitive = true;
                     vim-rhubarb = true;
                     vim-surround = true;
+                    vim-repeat = true;
                     which-key = true;
                 };
             };

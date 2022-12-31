@@ -10,10 +10,12 @@ in
         enable = mkEnableOption "Enable LSP";
 
         languages = {
+            all = mkEnableOption "Enable all LSP options";
             c = mkEnableOption "C LSP";
             nix = mkEnableOption "Nix LSP";
             ocaml = mkEnableOption "Ocaml LSP";
             python = mkEnableOption "Python LSP";
+            lua = mkEnableOption "Lua LSP";
         };
     };
 
@@ -50,7 +52,7 @@ in
                 nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
             end
 
-            ${functions.writeIf cfg.languages.nix ''
+            ${functions.writeIf (cfg.languages.nix || cfg.languages.all) ''
                 -- Nix config
                 lspconfig.nil_ls.setup{
                     capabilities = capabilities,
@@ -59,7 +61,7 @@ in
                 }
             ''}
 
-            ${functions.writeIf cfg.languages.python ''
+            ${functions.writeIf (cfg.languages.python || cfg.languages.all) ''
                 -- Python config
                 lspconfig.pyright.setup{
                     capabilities = capabilities,
@@ -68,7 +70,7 @@ in
                 }
             ''}
 
-            ${functions.writeIf cfg.languages.c ''
+            ${functions.writeIf ( cfg.languages.c || cfg.languages.all ) ''
                 -- CCLS (clang) config
                 lspconfig.ccls.setup{
                     capabilities = capabilities,
@@ -77,12 +79,21 @@ in
                 }
             ''}
 
-            ${functions.writeIf cfg.languages.ocaml ''
+            ${functions.writeIf ( cfg.languages.ocaml || cfg.languages.all ) ''
                  -- Ocaml (ocaml-lsp) config
                 lspconfig.ocamllsp.setup{
                     capabilities = capabilities,
                     on_attach=on_attach,
                     cmd = {"${pkgs.ocamlPackages.ocaml-lsp}/bin/ocamllsp"}
+                }
+            ''}
+
+            ${functions.writeIf ( cfg.languages.lua || cfg.languages.all ) ''
+                -- Lua config
+                lspconfig.sumneko_lua.setup {
+                    capabilities = capabilities,
+                    on_attach=on_attach,
+                    cmd = {"${pkgs.sumneko-lua-language-server}/bin/lua-language-server"}
                 }
             ''}
         '';

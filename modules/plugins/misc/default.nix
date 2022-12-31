@@ -19,6 +19,7 @@ in {
         vim-fugitive = mkEnableOption "Enable vim-fugitive";
         vim-rhubarb = mkEnableOption "Enable vim-rhubarb";
         vim-surround = mkEnableOption "Enable vim-surround";
+        vim-repeat = mkEnableOption "Enable vim-repeat";
 
         which-key = mkEnableOption "Enable Which-Key";
     };
@@ -31,6 +32,7 @@ in {
             ( if cfg.vim-fugitive then vim-fugitive else null )
             ( if cfg.vim-rhubarb then vim-rhubarb else null )
             ( if cfg.vim-surround then vim-surround else null )
+            ( if cfg.vim-repeat then vim-repeat else null )
             ( if cfg.which-key then which-key else null )
         ];
 

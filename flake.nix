@@ -21,6 +21,12 @@
         # LSP
         nvim-lspconfig = { url = "github:neovim/nvim-lspconfig"; flake = false; };
 
+        # Autocomplete
+        nvim-cmp = { url = "github:hrsh7th/nvim-cmp"; flake = false; };
+        cmp-nvim-lsp = { url = "github:hrsh7th/cmp-nvim-lsp"; flake = false; };
+        luaSnip = { url = "github:L3MON4D3/LuaSnip"; flake = false; };
+        cmp_luasnip = { url = "github:saadparwaiz1/cmp_luasnip"; flake = false; };
+
         # Telescope
         telescope-nvim = { url = "github:nvim-telescope/telescope.nvim"; flake = false; };
         telescope-fzf-native-nvim = { url = "github:nvim-telescope/telescope-fzf-native.nvim"; flake = false; };
@@ -41,6 +47,7 @@
         vim-fugitive = { url = "github:tpope/vim-fugitive"; flake = false; };
         vim-rhubarb = { url = "github:tpope/vim-rhubarb"; flake = false; };
         vim-surround = { url = "github:tpope/vim-surround"; flake = false; };
+        vim-repeat = { url = "github:tpope/vim-repeat"; flake = false; };
         which-key = { url = "github:folke/which-key.nvim"; flake = false; };
     };
 
