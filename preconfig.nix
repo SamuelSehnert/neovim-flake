@@ -58,7 +58,8 @@
                     comment-nvim.enable = true;
                     vim-sleuth.enable = true;
                     vim-fugitive = true;
-                    vim-rhubarb =true;
+                    vim-rhubarb = true;
+                    vim-surround = true;
                 };
             };
         };

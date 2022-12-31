@@ -18,6 +18,7 @@ in {
         vim-sleuth.enable = mkEnableOption "Enable vim-sleuth";
         vim-fugitive = mkEnableOption "Enable vim-fugitive";
         vim-rhubarb = mkEnableOption "Enable vim-rhubarb";
+        vim-surround = mkEnableOption "Enable vim-surround";
     };
 
     config = {
@@ -27,6 +28,7 @@ in {
             ( if cfg.vim-sleuth.enable then vim-sleuth else null )
             ( if cfg.vim-fugitive then vim-fugitive else null )
             ( if cfg.vim-rhubarb then vim-rhubarb else null )
+            ( if cfg.vim-surround then vim-surround else null )
         ];
 
         customNeovim.luaConfigRC = ''

@@ -251,6 +251,7 @@
         "vim-nix": "vim-nix",
         "vim-rhubarb": "vim-rhubarb",
         "vim-sleuth": "vim-sleuth",
+        "vim-surround": "vim-surround",
         "vimtex": "vimtex"
       }
     },
@@ -347,6 +348,22 @@
       "original": {
         "owner": "tpope",
         "repo": "vim-sleuth",
+        "type": "github"
+      }
+    },
+    "vim-surround": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1666730476,
+        "narHash": "sha256-DZE5tkmnT+lAvx/RQHaDEgEJXRKsy56KJY919xiH1lE=",
+        "owner": "tpope",
+        "repo": "vim-surround",
+        "rev": "3d188ed2113431cf8dac77be61b842acb64433d9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tpope",
+        "repo": "vim-surround",
         "type": "github"
       }
     },
