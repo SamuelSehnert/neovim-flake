@@ -3,5 +3,7 @@ result
 
 **/.latexrun.db.lock
 
+**/target
+
 testfiles/tex/*
 !testfiles/tex/tex.tex

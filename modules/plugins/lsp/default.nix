@@ -18,6 +18,8 @@ in
             lua = mkEnableOption "Lua LSP";
             systemverilog = mkEnableOption "SystemVerilog LSP";
             typescript = mkEnableOption "Javascript/Typescript LSP";
+            tex = mkEnableOption "Tex/LaTeX LSP";
+            rust = mkEnableOption "Rust LSP";
         };
     };
 
@@ -105,6 +107,20 @@ in
                         "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server", "--stdio",
                         "--tsserver-path", "${pkgs.nodePackages.typescript}/lib/node_modules/typescript/lib"
                     }
+                }
+            ''}
+            ${functions.writeIf ( cfg.languages.tex || cfg.languages.all ) ''
+                lspconfig.texlab.setup {
+                    capabilities = capabilities,
+                    on_attach=on_attach,
+                    cmd = {"${pkgs.texlab}/bin/texlab"}
+                }
+            ''}
+            ${functions.writeIf ( cfg.languages.rust || cfg.languages.all ) ''
+                lspconfig.rust_analyzer.setup {
+                    capabilities = capabilities,
+                    on_attach=on_attach,
+                    cmd = {"${pkgs.rust-analyzer}/bin/rust-analyzer"}
                 }
             ''}
         '';

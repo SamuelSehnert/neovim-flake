@@ -1,4 +1,5 @@
 use std::io;
+use std::collections::HashMap;
 
 fn main() {
     println!("Guess the number!");
@@ -7,7 +8,7 @@ fn main() {
 
     let mut guess = String::new();
 
-    let hm = HashMap::new();
+    let mut subjects = HashMap::<u16, u8>::new();
 
     io::stdin()
         .read_line(&mut guess)
