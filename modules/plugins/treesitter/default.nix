@@ -13,7 +13,6 @@ in {
 
     config = mkIf cfg.enable {
         customNeovim.startupPlugins = with pkgs.neovimPlugins; [
-            vim-nix
             nvim-treesitter
             (if cfg.context then nvim-treesitter-context else null)
         ];

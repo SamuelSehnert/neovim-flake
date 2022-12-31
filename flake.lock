@@ -252,7 +252,8 @@
         "vim-rhubarb": "vim-rhubarb",
         "vim-sleuth": "vim-sleuth",
         "vim-surround": "vim-surround",
-        "vimtex": "vimtex"
+        "vimtex": "vimtex",
+        "which-key": "which-key"
       }
     },
     "telescope-fzf-native-nvim": {
@@ -380,6 +381,22 @@
       "original": {
         "owner": "lervag",
         "repo": "vimtex",
+        "type": "github"
+      }
+    },
+    "which-key": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1671878262,
+        "narHash": "sha256-NyFNVetYLzne1wGkdv+37wmXomSWbExxZ0ziO3H6bXQ=",
+        "owner": "folke",
+        "repo": "which-key.nvim",
+        "rev": "8682d3003595017cd8ffb4c860a07576647cc6f8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "which-key.nvim",
         "type": "github"
       }
     }

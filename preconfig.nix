@@ -60,6 +60,7 @@
                     vim-fugitive = true;
                     vim-rhubarb = true;
                     vim-surround = true;
+                    which-key = true;
                 };
             };
         };

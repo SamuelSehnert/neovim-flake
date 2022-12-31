@@ -41,6 +41,7 @@
         vim-fugitive = { url = "github:tpope/vim-fugitive"; flake = false; };
         vim-rhubarb = { url = "github:tpope/vim-rhubarb"; flake = false; };
         vim-surround = { url = "github:tpope/vim-surround"; flake = false; };
+        which-key = { url = "github:folke/which-key.nvim"; flake = false; };
     };
 
     outputs = inputs: let
