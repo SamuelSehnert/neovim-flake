@@ -70,7 +70,7 @@ in
         smartcase = mkOption {
             description = "Try to be smart about cases when searching, etc";
             type = types.bool;
-            default = true;
+            default = false;
         };
 
         wrap = mkOption {

@@ -9,6 +9,7 @@
                 lineNumber = "relativenumber";
                 wrap = false;
                 autoindent = true;
+                ignorecase = true;
             };
             keymaps.leader = " ";
             themes = {

@@ -40,7 +40,7 @@ in
             ${functions.writeIf cfg.trouble ''
                 require('trouble').setup {}
                 vim.keymap.set("n", "<leader>TT", "<cmd>TroubleToggle<cr>", {silent = true, noremap = true, desc = "[T]oggle[T]rouble"})
-                vim.keymap.set("n", "<leader>TW", "<cmd>TroubleToggle workspace_diagnostics<cr>", {silent = true, noremap = true, desc = "[T]rouble [W]roup"})
+                vim.keymap.set("n", "<leader>TW", "<cmd>TroubleToggle workspace_diagnostics<cr>", {silent = true, noremap = true, desc = "[T]rouble [W]orkspace"})
                 vim.keymap.set("n", "<leader>TD", "<cmd>TroubleToggle document_diagnostics<cr>", {silent = true, noremap = true, desc = "[T]rouble [D]ocument"})
             ''}
 
