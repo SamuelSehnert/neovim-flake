@@ -16,6 +16,8 @@ in
             ocaml = mkEnableOption "Ocaml LSP";
             python = mkEnableOption "Python LSP";
             lua = mkEnableOption "Lua LSP";
+            systemverilog = mkEnableOption "SystemVerilog LSP";
+            typescript = mkEnableOption "Javascript/Typescript LSP";
         };
     };
 
@@ -53,47 +55,56 @@ in
             end
 
             ${functions.writeIf (cfg.languages.nix || cfg.languages.all) ''
-                -- Nix config
                 lspconfig.nil_ls.setup{
                     capabilities = capabilities,
                     on_attach=on_attach,
                     cmd = {"${pkgs.nil}/bin/nil"},
                 }
             ''}
-
             ${functions.writeIf (cfg.languages.python || cfg.languages.all) ''
-                -- Python config
                 lspconfig.pyright.setup{
                     capabilities = capabilities,
                     on_attach=on_attach,
                     cmd = {"${pkgs.nodePackages.pyright}/bin/pyright-langserver", "--stdio"}
                 }
             ''}
-
             ${functions.writeIf ( cfg.languages.c || cfg.languages.all ) ''
-                -- CCLS (clang) config
                 lspconfig.ccls.setup{
                     capabilities = capabilities,
                     on_attach=on_attach,
                     cmd = {"${pkgs.ccls}/bin/ccls"}
                 }
             ''}
-
             ${functions.writeIf ( cfg.languages.ocaml || cfg.languages.all ) ''
-                 -- Ocaml (ocaml-lsp) config
                 lspconfig.ocamllsp.setup{
                     capabilities = capabilities,
                     on_attach=on_attach,
                     cmd = {"${pkgs.ocamlPackages.ocaml-lsp}/bin/ocamllsp"}
                 }
             ''}
-
             ${functions.writeIf ( cfg.languages.lua || cfg.languages.all ) ''
-                -- Lua config
                 lspconfig.sumneko_lua.setup {
                     capabilities = capabilities,
                     on_attach=on_attach,
                     cmd = {"${pkgs.sumneko-lua-language-server}/bin/lua-language-server"}
+                }
+            ''}
+            ${functions.writeIf ( cfg.languages.systemverilog || cfg.languages.all ) ''
+                lspconfig.svls.setup {
+                    capabilities = capabilities,
+                    on_attach=on_attach,
+                    cmd = {"${pkgs.svls}/bin/svls"}
+                }
+            ''}
+            ${functions.writeIf ( cfg.languages.typescript || cfg.languages.all ) ''
+                lspconfig.tsserver.setup {
+                    capabilities = capabilities;
+                    on_attach=on_attach,
+                    cmd = {
+                        -- https://github.com/typescript-language-server/typescript-language-server/issues/411
+                        "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server", "--stdio",
+                        "--tsserver-path", "${pkgs.nodePackages.typescript}/lib/node_modules/typescript/lib"
+                    }
                 }
             ''}
         '';
