@@ -1,10 +1,8 @@
-import random
-
 def main():
-    print(random.randint)
     testFunction(4)
 
 def testFunction(x):
+    randint();
     if x == 1:
         return 2
     else:

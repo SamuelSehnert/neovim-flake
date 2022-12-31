@@ -23,17 +23,30 @@ in
             css = mkEnableOption "CSS LSP";
             json = mkEnableOption "JSON LSP";
         };
+
+        trouble = mkEnableOption "Enable Trouble";
     };
 
     config = mkIf cfg.enable {
 
         customNeovim.startupPlugins = with pkgs.neovimPlugins; [
             nvim-lspconfig
+            (if cfg.trouble then trouble else null )
+            (pkgs.vimPlugins.nvim-code-action-menu)
         ];
 
         customNeovim.luaConfigRC = ''
+
+            ${functions.writeIf cfg.trouble ''
+                require('trouble').setup {}
+                vim.keymap.set("n", "<leader>TT", "<cmd>TroubleToggle<cr>", {silent = true, noremap = true, desc = "[T]oggle[T]rouble"})
+                vim.keymap.set("n", "<leader>TW", "<cmd>TroubleToggle workspace_diagnostics<cr>", {silent = true, noremap = true, desc = "[T]rouble [W]roup"})
+                vim.keymap.set("n", "<leader>TD", "<cmd>TroubleToggle document_diagnostics<cr>", {silent = true, noremap = true, desc = "[T]rouble [D]ocument"})
+            ''}
+
             local lspconfig = require('lspconfig')
             local capabilities = vim.lsp.protocol.make_client_capabilities()
+            capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
             capabilities.textDocument.completion.completionItem.snippetSupport = true
 
             local on_attach = function(_, bufnr)

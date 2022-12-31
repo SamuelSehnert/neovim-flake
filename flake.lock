@@ -315,6 +315,7 @@
         "ripgrep": "ripgrep",
         "telescope-fzf-native-nvim": "telescope-fzf-native-nvim",
         "telescope-nvim": "telescope-nvim",
+        "trouble": "trouble",
         "vim-fugitive": "vim-fugitive",
         "vim-nix": "vim-nix",
         "vim-repeat": "vim-repeat",
@@ -354,6 +355,22 @@
       "original": {
         "owner": "nvim-telescope",
         "repo": "telescope.nvim",
+        "type": "github"
+      }
+    },
+    "trouble": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1668579978,
+        "narHash": "sha256-8IJB4cIT85GkManiRSelGEMGudnGwZ5Vr+CJwTv40SY=",
+        "owner": "folke",
+        "repo": "trouble.nvim",
+        "rev": "897542f90050c3230856bc6e45de58b94c700bbf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "trouble.nvim",
         "type": "github"
       }
     },

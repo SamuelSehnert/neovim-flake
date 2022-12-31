@@ -46,6 +46,7 @@
                     languages = {
                         all = true;
                     };
+                    trouble = true;
                 };
                 autocomplete.enable = true;
                 misc = {

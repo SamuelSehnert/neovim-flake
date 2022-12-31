@@ -133,7 +133,7 @@ in
             vim.opt.hlsearch = ${boolToString cfg.hlsearch}
             vim.opt.ignorecase = ${boolToString cfg.ignorecase}
 
-            vim.opt.mouse = ${if cfg.mouse == "" then "\"\"" else (toString cfg.mouse)}
+            vim.opt.mouse = '${toString cfg.mouse}'
         '';
     };
 }

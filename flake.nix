@@ -20,6 +20,7 @@
 
         # LSP
         nvim-lspconfig = { url = "github:neovim/nvim-lspconfig"; flake = false; };
+        trouble = { url = "github:folke/trouble.nvim"; flake = false; };
 
         # Autocomplete
         nvim-cmp = { url = "github:hrsh7th/nvim-cmp"; flake = false; };
